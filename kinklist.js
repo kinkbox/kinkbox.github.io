@@ -179,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const table = document.createElement('table');
             table.className = 'kinkGroup';
+            if (fields.length < 2) table.classList.add('single-field');
             setData(table, 'fields', fields);
 
             const thead = document.createElement('thead');
@@ -191,7 +192,11 @@ document.addEventListener('DOMContentLoaded', () => {
             thead.appendChild(document.createElement('th'));
             table.appendChild(thead);
             table.appendChild(document.createElement('tbody'));
-            category.appendChild(table);
+
+            const scroll = document.createElement('div');
+            scroll.className = 'table-scroll';
+            scroll.appendChild(table);
+            category.appendChild(scroll);
             return category;
         },
 
@@ -224,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setData(choices, 'field', field);
                 choices.classList.add(`choice-${strToClass(field)}`);
                 const td = document.createElement('td');
+                td.dataset.field = field;
                 td.appendChild(choices);
                 row.appendChild(td);
             }
@@ -237,13 +243,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         createColumns() {
             const colClasses = ['100', '50', '33', '25'];
-            let numCols = Math.floor((document.body.scrollWidth - 20) / 400);
+            const list = $('#InputList');
+            const listWidth = list.clientWidth || document.documentElement.clientWidth;
+            let numCols = Math.floor((listWidth - 20) / 400);
             if (!numCols) numCols = 1;
+            if (window.matchMedia('(max-width: 900px)').matches) numCols = 1;
             if (numCols > 4) numCols = 4;
             const colClass = `col${colClasses[numCols - 1]}`;
 
             inputKinks.columns = [];
-            const list = $('#InputList');
             for (let i = 0; i < numCols; i++) {
                 const col = document.createElement('div');
                 col.className = `col ${colClass}`;
