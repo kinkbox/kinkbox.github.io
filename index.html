@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Kinklist</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="color-scheme" content="dark">
+        <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMTAvMjEvMTV5ehY1AAAAZElEQVQ4jaWTwQ3AIAwDbcT+I9f9hjYQA/mAkO7igKAACWdFAF0A2gb0hP0uCyTATyAJSoaK5xGyEmTC9lktmORUdAQvBQ5cJshktoDk0HkmKRNUEmuE6ztYVXe7bT+jW7z9zi8qYiodCjCHKgAAAABJRU5ErkJggg==">
+        <link rel="stylesheet" href="kinklist.css">
+        <script src="kinklist.js" defer></script>
+    </head>
+    <body>
+        <div class="widthWrapper">
+            <header class="app-header">
+                <div class="header-row header-row--top">
+                    <div class="header-title">
+                        <button id="Edit" type="button" aria-label="Edit kink list">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path d="M11.5 1.5l3 3L5 14H2v-3L11.5 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <h1>Kinklist</h1>
+                    </div>
+                    <div class="header-actions">
+                        <select id="listType" aria-label="List type">
+                            <option value="classic">Classic</option>
+                            <option value="detailed">Detailed</option>
+                            <option value="plsno">Please Don't</option>
+                        </select>
+                        <button id="StartBtn" type="button" aria-label="Guided input">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                                <path d="M4 3l10 6-10 6V3z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="header-row header-row--bottom">
+                    <div class="legend" aria-label="Rating legend">
+                        <div><span data-color="#FFFFFF" class="choice notEntered"></span> <span class="legend-text">Not Entered</span></div>
+                        <div><span data-color="#6DB5FE" class="choice favorite"></span> <span class="legend-text">Favorite</span></div>
+                        <div><span data-color="#23FD22" class="choice like"></span> <span class="legend-text">Like</span></div>
+                        <div><span data-color="#FDFD6B" class="choice indifferent"></span> <span class="legend-text">Indifferent</span></div>
+                        <div><span data-color="#DB6C00" class="choice maybe"></span> <span class="legend-text">Maybe</span></div>
+                        <div><span data-color="#920000" class="choice limit"></span> <span class="legend-text">Limit</span></div>
+                    </div>
+                    <div id="ExportWrapper">
+                        <button id="Export" type="button">Download PNG</button>
+                    </div>
+                </div>
+            </header>
+            <main id="InputList"></main>
+        </div>
+        <div id="EditOverlay" class="overlay hidden">
+            <div class="modal">
+                <h2 class="modal-title">Edit list</h2>
+                <textarea id="Kinks" aria-label="Kink list text"></textarea>
+                <button id="KinksOK" type="button">Accept</button>
+            </div>
+        </div>
+        <div id="InputOverlay" class="overlay hidden">
+            <div class="widthWrapper">
+                <div id="InputPrevious"></div>
+                <div id="InputCurrent">
+                    <h2 id="InputCategory"></h2>
+                    <h3 id="InputField"></h3>
+                    <button class="closePopup" type="button" aria-label="Close">×</button>
+                    <div id="InputValues"></div>
+                </div>
+                <div id="InputNext"></div>
+            </div>
+        </div>
+        <div id="DescriptionOverlay" class="overlay hidden">
+            <div id="Description" class="modal modal--description"></div>
+        </div>
+    </body>
+</html>
